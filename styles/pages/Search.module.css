@@ -1,0 +1,31 @@
+.container {
+    width: 100%;
+  }
+  
+.main {
+  max-width: 1000px;
+
+  margin: 0 auto;
+  padding-top: 75px;
+}
+  
+.title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  margin-left: 62px;
+}
+
+.containerCard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  
+  list-style: none;
+}
+
+.itemCard {
+  margin: 16px;
+}
