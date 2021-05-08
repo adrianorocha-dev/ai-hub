@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link';
 import {MdAdd, MdSearch} from 'react-icons/md'
 import {FiLogOut} from 'react-icons/fi'
 
@@ -23,10 +24,12 @@ function Header() {
           </button>
         </form>
 
-        <button className={styles.roundButton}>
-          <MdAdd />
-        </button>
-
+        <Link href="/repos/new">
+          <button className={styles.roundButton}>
+            <MdAdd />
+          </button>
+        </Link>
+        
         <span className={styles.userName}>Fulano</span>
 
         <Button>
