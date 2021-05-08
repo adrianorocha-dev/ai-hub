@@ -15,7 +15,7 @@ function Dashboard() {
             id: 'repo1',
             name: 'Numconsigo',
             description: 'Um repositório muito legal e pá',
-            owner: 'Mylleninha'
+            owner: 'Mylleninha',
           }}
         />
       </main>
