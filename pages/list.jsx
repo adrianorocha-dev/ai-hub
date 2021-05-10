@@ -1,7 +1,7 @@
 import React from 'react';
 import { MdFileUpload } from 'react-icons/md';
 import { GoGear } from 'react-icons/go';
-import { BsThreeDotsVertical } from 'react-icons/bs'
+import { BsThreeDotsVertical } from 'react-icons/bs';
 import Header from '../components/Header';
 
 import Button from '../components/Button';
@@ -20,38 +20,47 @@ function List() {
             <span>Enviar Modelo</span>
           </Button>
           <Button>
-            <GoGear/>
+            <GoGear />
           </Button>
         </div>
         <div className={styles.containerLabels}>
           <div>
-            <a>Nome</a>
+            <button type="button" className={styles.nameOptions}>
+              Nome
+            </button>
           </div>
           <div className={styles.containerLabels}>
-            <a className={styles.nameOptions}>Versão</a>
-            <a className={styles.nameOptions}>Tipo</a>
-            <a className={styles.nameOptions}>Métricas</a>
-            <a className={styles.nameOptions}>Framework</a>
-            <a className={styles.nameOptions}>Ações</a>
+            <button type="button" className={styles.nameOptions}>
+              Versão
+            </button>
+            <button type="button" className={styles.nameOptions}>
+              Tipo
+            </button>
+            <button type="button" className={styles.nameOptions}>
+              Métricas
+            </button>
+            <button type="button" className={styles.nameOptions}>
+              Framework
+            </button>
+            <button type="button" className={styles.nameOptions}>
+              Ações
+            </button>
           </div>
         </div>
         <div className={styles.containerItem}>
           <div>
-            <a>modelo_1_exemplo.h5</a>
+            <span>modelo_1_exemplo.h5</span>
           </div>
           <div className={styles.containerItem}>
-            <a className={styles.nameOptions}>1.0</a>
-            <a className={styles.nameOptions}>Classificação</a>
-            <a className={styles.nameOptions}>90 acc</a>
-            <a className={styles.nameOptions}>Kensorflow</a>
-            <a className={styles.nameOptions}>
-              <Button>
-                <BsThreeDotsVertical />
-              </Button>
-            </a>
+            <span className={styles.nameOptions}>1.0</span>
+            <span className={styles.nameOptions}>Classificação</span>
+            <span className={styles.nameOptions}>90 acc</span>
+            <span className={styles.nameOptions}>Kensorflow</span>
+            <button type="button" className={styles.nameOptions}>
+              <BsThreeDotsVertical />
+            </button>
           </div>
         </div>
-        
       </main>
     </div>
   );
