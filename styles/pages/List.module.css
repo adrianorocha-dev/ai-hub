@@ -8,3 +8,36 @@
   margin: 0 auto;
   padding-top: 75px;
 }
+
+.containerOptions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 19px;
+}
+
+.nameOptions {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+
+  margin-left: 50px;
+}
+
+.containerLabels {
+  padding-left: 20px;
+  padding-right: 20px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.containerItem {
+  padding-top: 26px;
+  padding-left: 20px;
+  padding-right: 20px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
