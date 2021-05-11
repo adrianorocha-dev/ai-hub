@@ -16,14 +16,14 @@
 }
 
 .main > img {
-  width: 563px;
-  height: 360px;
+  width: 695px;
+  height: 429px;
   bottom: 0;
   right: 5px;
 
-  opacity: 0.5;
+  opacity: 0.3;
 
-  position: absolute;
+  position: fixed;
 }
 
 .form {
@@ -31,6 +31,8 @@
   height: 423px;
 
   position: relative;
+
+  z-index: 1;
 }
 
 .inputGroup {
