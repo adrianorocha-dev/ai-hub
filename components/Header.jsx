@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { signOut } from 'next-auth/client';
 import { MdAdd, MdSearch } from 'react-icons/md';
 import { FiLogOut } from 'react-icons/fi';
 
@@ -36,7 +37,7 @@ function Header() {
 
         <span className={styles.userName}>Fulano</span>
 
-        <Button>
+        <Button onClick={() => signOut()}>
           <FiLogOut />
           <span>Logout</span>
         </Button>
