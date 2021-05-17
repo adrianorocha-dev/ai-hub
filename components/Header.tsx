@@ -9,7 +9,7 @@ import Button from './Button';
 import styles from '../styles/components/Header.module.css';
 
 function Header() {
-  function handleSubmit(event) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
   }
 
