@@ -15,7 +15,12 @@ function Header() {
 
   return (
     <header className={styles.header}>
-      <img src="/assets/logo.svg" alt="AI Hub" className={styles.logo} />
+      <Link href="/dashboard">
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+        <a>
+          <img src="/assets/logo.svg" alt="AI Hub" className={styles.logo} />
+        </a>
+      </Link>
 
       <div className={styles.controls}>
         <form onSubmit={handleSubmit} className={styles.searchForm}>
