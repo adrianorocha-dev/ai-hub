@@ -2,11 +2,11 @@ import React from 'react';
 import { MdFileUpload } from 'react-icons/md';
 import { GoGear } from 'react-icons/go';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import Header from '../components/Header';
+import Header from '../../components/Header';
 
-import Button from '../components/Button';
+import Button from '../../components/Button';
 
-import styles from '../styles/pages/List.module.css';
+import styles from '../../styles/pages/Repo.module.css';
 
 function List() {
   return (
