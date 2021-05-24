@@ -2,10 +2,16 @@ import Link from 'next/link';
 import React from 'react';
 import { MdDelete, MdPerson } from 'react-icons/md';
 
+import { Repo } from '../@types/Repo';
+
 import styles from '../styles/components/RepoCard.module.css';
 
-function RepoCard({ repo }) {
-  function handleDelete(event) {
+interface RepoCardProps {
+  repo: Repo;
+}
+
+const RepoCard: React.FC<RepoCardProps> = ({ repo }) => {
+  function handleDelete(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     event.preventDefault();
   }
 
