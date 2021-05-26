@@ -2,13 +2,17 @@ import React from 'react';
 import { MdFileUpload } from 'react-icons/md';
 import { GoGear } from 'react-icons/go';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import Header from '../../components/Header';
+import Header from '../../../components/Header';
 
-import Button from '../../components/Button';
+import Button from '../../../components/Button';
 
-import styles from '../../styles/pages/Repo.module.css';
+import styles from '../../../styles/pages/Repo.module.css';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 function List() {
+  const router = useRouter();
+
   return (
     <div className={styles.container}>
       <Header />
@@ -19,9 +23,13 @@ function List() {
             <MdFileUpload />
             <span>Enviar Modelo</span>
           </Button>
-          <Button>
-            <GoGear />
-          </Button>
+          <Link href={`/repos/${router.query.id}/settings`}>
+            <a>
+              <Button>
+                <GoGear />
+              </Button>
+            </a>
+          </Link>
         </div>
         <div className={styles.containerLabels}>
           <div>

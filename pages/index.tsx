@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { signIn, useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import { FiLogIn } from 'react-icons/fi';
@@ -6,14 +6,21 @@ import { FiLogIn } from 'react-icons/fi';
 import Button from '../components/Button';
 
 import styles from '../styles/pages/Home.module.css';
+import api from '../services/api';
 
 function Home() {
   const [session] = useSession();
   const router = useRouter();
 
-  if (session) {
-    router.push('/dashboard');
-  }
+  useEffect(() => {
+    if (session) {
+      const { email, name, image: avatarUrl } = session.user;
+
+      api.post('/users', { email, name, avatarUrl });
+      router.push('/dashboard');
+    }
+  }, [session]);
+
 
   return (
     <div className={styles.container}>
