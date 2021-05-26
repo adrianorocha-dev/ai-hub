@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { signOut } from 'next-auth/client';
+import { signOut, useSession } from 'next-auth/client';
 import { MdAdd, MdSearch } from 'react-icons/md';
 import { FiLogOut } from 'react-icons/fi';
 
@@ -9,14 +9,24 @@ import Button from './Button';
 import styles from '../styles/components/Header.module.css';
 
 function Header() {
+  const [ session, sessionLoading ] = useSession();
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+  }
+
+  function getFirstName() {
+    if (sessionLoading || !session.user) {
+      return '';
+    }
+    
+    const [ firstName ] = session.user.name.split(' ');
+    return firstName ?? '';
   }
 
   return (
     <header className={styles.header}>
       <Link href="/dashboard">
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a>
           <img src="/assets/logo.svg" alt="AI Hub" className={styles.logo} />
         </a>
@@ -40,7 +50,7 @@ function Header() {
           </button>
         </Link>
 
-        <span className={styles.userName}>Fulano</span>
+        <span className={styles.userName}>{getFirstName()}</span>
 
         <Button onClick={() => signOut()}>
           <FiLogOut />
