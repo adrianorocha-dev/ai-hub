@@ -7,12 +7,16 @@ import { Repo } from '../@types/Repo';
 import styles from '../styles/components/RepoCard.module.css';
 
 interface RepoCardProps {
-  repo: Repo;
+  repo: Partial<Repo>;
+  owner: string;
+  onDelete: (repoId: string) => void
 }
 
-const RepoCard: React.FC<RepoCardProps> = ({ repo }) => {
-  function handleDelete(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+const RepoCard: React.FC<RepoCardProps> = ({ repo, owner, onDelete }) => {
+  async function handleDelete(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     event.preventDefault();
+
+    onDelete(repo.id);
   }
 
   return (
@@ -24,7 +28,7 @@ const RepoCard: React.FC<RepoCardProps> = ({ repo }) => {
 
         <div>
           <MdPerson />
-          <span>{repo.owner}</span>
+          <span>{owner}</span>
         </div>
 
         <button
