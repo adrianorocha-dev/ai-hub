@@ -31,46 +31,59 @@ function List() {
             </a>
           </Link>
         </div>
-        <div className={styles.containerLabels}>
-          <div>
-            <button type="button" className={styles.nameOptions}>
-              Nome
-            </button>
-          </div>
-          <div className={styles.containerLabels}>
-            <button type="button" className={styles.nameOptions}>
-              Versão
-            </button>
-            <button type="button" className={styles.nameOptions}>
-              Tipo
-            </button>
-            <button type="button" className={styles.nameOptions}>
-              Métricas
-            </button>
-            <button type="button" className={styles.nameOptions}>
-              Framework
-            </button>
-            <button type="button" className={styles.nameOptions}>
-              Ações
-            </button>
-          </div>
+
+        <div className={styles.bodyTable}>
+          <table className={styles.tableModels}>
+
+            <tr>
+              <th>
+                <button type="button" className={styles.columnName}>Nome</button>
+              </th>
+              <th className={styles.column}>
+                <button type="button" className={styles.buttonOptions}>Versão</button>
+              </th>
+              <th>
+                <button type="button" className={styles.buttonOptions}>Tipo</button>
+              </th>
+              <th>
+                <button type="button" className={styles.buttonOptions}>Métricas</button>
+              </th>
+              <th>
+                <button type="button" className={styles.buttonOptions}>Framework</button>
+              </th>
+              <th>
+                <button type="button" className={styles.buttonOptions}>Ações</button>
+              </th>
+            </tr>
+
+            <tr className={styles.modelData}>
+              <td className={styles.labelInfoName}>
+                <span>modelo_1_exemplo.h5</span>
+              </td>
+              <td className={styles.labelInfo}>
+                <span>1.0</span>
+              </td>
+              <td className={styles.labelInfo}>
+                <span>Classificação</span>
+              </td>
+              <td className={styles.labelInfo}>
+                <span>90 acc</span>
+              </td>
+              <td className={styles.labelInfo}>
+                <span>Kensorflow</span>
+              </td>
+              <td>
+                <button type="button" className={styles.buttonDotDotDot}>
+                  <BsThreeDotsVertical />
+                </button>
+              </td>
+            </tr>
+          </table>
+
         </div>
-        <div className={styles.containerItem}>
-          <div>
-            <span>modelo_1_exemplo.h5</span>
-          </div>
-          <div className={styles.containerItem}>
-            <span className={styles.nameOptions}>1.0</span>
-            <span className={styles.nameOptions}>Classificação</span>
-            <span className={styles.nameOptions}>90 acc</span>
-            <span className={styles.nameOptions}>Kensorflow</span>
-            <button type="button" className={styles.nameOptions}>
-              <BsThreeDotsVertical />
-            </button>
-          </div>
-        </div>
+
       </main>
-    </div>
+    </div >
   );
 }
 
