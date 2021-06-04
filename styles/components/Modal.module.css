@@ -1,0 +1,25 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  left: 0vw;
+  top: 0vw;
+  z-index: 3;
+
+  background-color: #ffffffc7;
+}
+
+.modalContent {
+  width: 540px;
+
+  border-radius: 20px;
+  padding: 45px;
+
+  background-color: #fff;
+  box-shadow: 0 0 4px 2px #0007;
+}
