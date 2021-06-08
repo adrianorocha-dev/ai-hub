@@ -32,17 +32,25 @@
 }
 
 .tableModels{
-  width: 817px;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.bodyTable{
-  display: flex;
-  padding-left: 20px;
-  padding-right: 20px;
+
+.tableModels thead {
+  border-bottom: 4px solid #ddd;
 }
 
-.column{
-  text-align: left;
+.tableModels th, .tableModels td {
+  padding: 10px 15px;
+}
+
+.tableModels th > button {
+  font-weight: 700;
+}
+
+.modelData:hover {
+  background-color: #0003;
 }
 
 .columnName {
@@ -50,10 +58,9 @@
   font-size: 18px;
 
   text-align: left;
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
   width: 100%;
-  padding-bottom: 26px;
 
   background-color: transparent;
 }
@@ -61,15 +68,6 @@
 .buttonOptions {
   font-family: Roboto;
   font-size: 18px;
-
-  width: 100%;
-
-  line-height: 21px;
- 
-  padding-bottom: 26px;
-
-  align-items: center;
-
   background-color: transparent;
 }
 
@@ -142,6 +140,31 @@
   align-items: center;
 }
 
+.modalHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.modalHeaderButtonsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalHeaderButton {
+  padding: 10px;
+}
+
+.buttonDownload {
+  margin-right: 10px;
+}
+
+.buttonDelete {
+  background-color: var(--color-danger);
+}
+
 .modalButton {
   width: 155px;
   height: 54px;
@@ -155,9 +178,9 @@
 }
 
 .buttonCancel {
-  background-color: #C83E4D;
+  background-color: var(--color-danger);
 }
 
 .buttonSave {
-  background-color: #06D6A0;
+  background-color: var(--color-sucess);
 }
