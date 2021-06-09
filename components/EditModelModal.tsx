@@ -74,6 +74,8 @@ const EditModalModal: React.FC<CreateModelModalProps> = ({ modelId, onClose }) =
 
     try {
       await api.delete(`/repos/${router.query.id}/models/${modelId}`);
+
+      onClose();
     } catch(error) {
       alert('Erro ao excluir o modelo, tente novamente');
     }
