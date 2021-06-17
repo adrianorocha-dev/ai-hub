@@ -97,3 +97,54 @@
     line-height: 24px;
   }
   
+  .membersList {
+    list-style: none;
+    
+    display: flex;
+    flex-direction: column;
+
+    padding: 0;
+  }
+
+  .memberItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding: 6px 12px;
+  }
+
+  .memberItem:hover {
+    background-color: #0003;
+  }
+
+  .memberItem h1 {
+    font-size: 18px;
+    font-weight: bold;
+
+    margin-right: 10px;
+  }
+
+  .memberItem h2 {
+    font-size: 16px;
+    font-weight: normal;
+  }
+
+  .memberItem .buttonRemoveMember {
+    width: 24px;
+    height: 24px;
+
+    font-size: 18px;
+    color: #fff;
+
+    padding: 0;
+    margin-left: auto;
+    border: none;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background-color: var(--color-danger);
+  }

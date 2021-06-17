@@ -60,7 +60,7 @@ function Dashboard() {
                     name: repo.name,
                     description: repo.description,
                   }}
-                  owner={session.user.name}
+                  owner={repo.owner.name}
                   onDelete={deleteRepo}
                 />
               </li>
