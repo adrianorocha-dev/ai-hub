@@ -6,13 +6,15 @@ import api from '../services/api';
 import { useRouter } from 'next/router';
 import Button from './Button';
 import { MdClose, MdSave } from 'react-icons/md';
+import { useSession } from 'next-auth/client';
 
 interface CreateModelModalProps {
   file: File | undefined;
   setFile: (file: File) => void;
+  allowCreate?: boolean;
 }
 
-const CreateModalModal: React.FC<CreateModelModalProps> = ({ file, setFile }) => {
+const CreateModalModal: React.FC<CreateModelModalProps> = ({ file, setFile, allowCreate }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [version, setVersion] = useState('');
@@ -20,6 +22,7 @@ const CreateModalModal: React.FC<CreateModelModalProps> = ({ file, setFile }) =>
   const [metrics, setMetrics] = useState('');
   const [frameworks, setFrameworks] = useState('');
 
+  const [session] = useSession();
   const router = useRouter();
 
   function clearForm() {
@@ -45,6 +48,7 @@ const CreateModalModal: React.FC<CreateModelModalProps> = ({ file, setFile }) =>
     formData.append('type', type);
     formData.append('metrics', metrics);
     formData.append('frameworks', frameworks);
+    formData.append('userEmail', session.user.email);
 
     await api.post(`/repos/${router.query.id}/models`, formData);
 
@@ -54,7 +58,7 @@ const CreateModalModal: React.FC<CreateModelModalProps> = ({ file, setFile }) =>
   }
 
   return (
-    <Modal open={Boolean(file)}>
+    <Modal open={Boolean(file) && allowCreate}>
         <form className={styles.modelInfoForm} onSubmit={handleSubmit}>
           <div className={styles.inputGroup}>
             <label htmlFor="model-name" className={styles.label}>

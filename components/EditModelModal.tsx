@@ -7,13 +7,15 @@ import { useRouter } from 'next/router';
 import Button from './Button';
 import { MdClose, MdCloudDownload, MdDelete, MdSave } from 'react-icons/md';
 import { Model } from '../@types/Model';
+import { useSession } from 'next-auth/client';
 
 interface CreateModelModalProps {
   modelId: string | undefined;
   onClose: () => void;
+  allowEdit?: boolean;
 }
 
-const EditModalModal: React.FC<CreateModelModalProps> = ({ modelId, onClose }) => {
+const EditModalModal: React.FC<CreateModelModalProps> = ({ modelId, onClose, allowEdit }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [version, setVersion] = useState('');
@@ -23,6 +25,7 @@ const EditModalModal: React.FC<CreateModelModalProps> = ({ modelId, onClose }) =
 
   const [fileUrl, setFileUrl] = useState<string>();
 
+  const [session] = useSession();
   const router = useRouter();
 
   useEffect(() => {
@@ -55,7 +58,8 @@ const EditModalModal: React.FC<CreateModelModalProps> = ({ modelId, onClose }) =
       description,
       type,
       metrics,
-      frameworks
+      frameworks,
+      userEmail: session.user.email,
     });
 
     onClose();
@@ -73,7 +77,7 @@ const EditModalModal: React.FC<CreateModelModalProps> = ({ modelId, onClose }) =
     }
 
     try {
-      await api.delete(`/repos/${router.query.id}/models/${modelId}`);
+      await api.delete(`/repos/${router.query.id}/models/${modelId}?userEmail=${session.user.email}`);
 
       onClose();
     } catch(error) {
@@ -101,6 +105,7 @@ const EditModalModal: React.FC<CreateModelModalProps> = ({ modelId, onClose }) =
             className={`${styles.modalHeaderButton} ${styles.buttonDelete}`}
             title="Excluir o modelo"
             onClick={handleDelete}
+            disabled={!allowEdit}
           >
             <MdDelete />
           </Button>
@@ -119,6 +124,7 @@ const EditModalModal: React.FC<CreateModelModalProps> = ({ modelId, onClose }) =
             placeholder="Digite o nome para o seu modelo"
             value={name}
             onChange={event => setName(event.target.value)}
+            disabled={!allowEdit}
           />
         </div>
 
@@ -133,6 +139,7 @@ const EditModalModal: React.FC<CreateModelModalProps> = ({ modelId, onClose }) =
             placeholder="Faça uma breve descrição sobre o repositório"
             value={description}
             onChange={event => setDescription(event.target.value)}
+            disabled={!allowEdit}
           />
         </div>
 
@@ -147,6 +154,7 @@ const EditModalModal: React.FC<CreateModelModalProps> = ({ modelId, onClose }) =
             placeholder="Número da versão"
             value={version}
             onChange={event => setVersion(event.target.value)}
+            disabled={!allowEdit}
           />
         </div>
 
@@ -161,6 +169,7 @@ const EditModalModal: React.FC<CreateModelModalProps> = ({ modelId, onClose }) =
             placeholder="Tipo de modelo"
             value={type}
             onChange={event => setType(event.target.value)}
+            disabled={!allowEdit}
           />
         </div>
 
@@ -175,6 +184,7 @@ const EditModalModal: React.FC<CreateModelModalProps> = ({ modelId, onClose }) =
             placeholder="Digite as métricas"
             value={metrics}
             onChange={event => setMetrics(event.target.value)}
+            disabled={!allowEdit}
           />
         </div>
 
@@ -189,6 +199,7 @@ const EditModalModal: React.FC<CreateModelModalProps> = ({ modelId, onClose }) =
             placeholder="Nome da framework ou ferramentas utilizadas"
             value={frameworks}
             onChange={event => setFrameworks(event.target.value)}
+            disabled={!allowEdit}
           />
         </div>
 
@@ -205,6 +216,7 @@ const EditModalModal: React.FC<CreateModelModalProps> = ({ modelId, onClose }) =
           <Button
             className={`${styles.modalButton} ${styles.buttonSave}`}
             type="submit"
+            disabled={!allowEdit}
           >
             <MdSave size={24} />
             <span>Salvar</span>

@@ -7,12 +7,23 @@ import { FiLogOut } from 'react-icons/fi';
 import Button from './Button';
 
 import styles from '../styles/components/Header.module.css';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 function Header() {
-  const [ session, sessionLoading ] = useSession();
+  const [searchTerm, setSearchTerm] = useState('');
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const [ session, sessionLoading ] = useSession();
+  const router = useRouter();
+
+  function handleSubmitSearch(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (!searchTerm) {
+      return;
+    }
+
+    router.push({ pathname: '/search', query: {searchTerm} });
   }
 
   function getFirstName() {
@@ -33,8 +44,8 @@ function Header() {
       </Link>
 
       <div className={styles.controls}>
-        <form onSubmit={handleSubmit} className={styles.searchForm}>
-          <input type="text" placeholder="Buscar repositórios" />
+        <form onSubmit={handleSubmitSearch} className={styles.searchForm}>
+          <input type="text" placeholder="Buscar repositórios" value={searchTerm} onChange={event => setSearchTerm(event.target.value)} />
 
           <button
             className={`${styles.searchButton} ${styles.roundButton}`}

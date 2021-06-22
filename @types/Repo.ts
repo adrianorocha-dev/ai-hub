@@ -1,6 +1,6 @@
 import { User } from "./User";
 
-enum RepoVisibility {
+export enum RepoVisibility {
   Public,
   Private,
 }
@@ -11,4 +11,5 @@ export interface Repo {
   description: string;
   visibility: RepoVisibility;
   owner: User;
+  members: User[];
 }

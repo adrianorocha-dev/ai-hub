@@ -9,14 +9,19 @@ import styles from '../styles/components/RepoCard.module.css';
 interface RepoCardProps {
   repo: Partial<Repo>;
   owner: string;
-  onDelete: (repoId: string) => void
+  allowDelete?: boolean;
+  onDelete?: (repoId: string) => void
 }
 
-const RepoCard: React.FC<RepoCardProps> = ({ repo, owner, onDelete }) => {
+const RepoCard: React.FC<RepoCardProps> = ({ repo, owner, allowDelete, onDelete }) => {
   async function handleDelete(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     event.preventDefault();
 
-    onDelete(repo.id);
+    if (!allowDelete) {
+      return;
+    }
+
+    onDelete?.(repo.id);
   }
 
   return (
@@ -31,13 +36,15 @@ const RepoCard: React.FC<RepoCardProps> = ({ repo, owner, onDelete }) => {
           <span>{owner}</span>
         </div>
 
-        <button
-          className={styles.deleteButton}
-          type="button"
-          onClick={handleDelete}
-        >
-          <MdDelete />
-        </button>
+        {allowDelete &&
+          <button
+            className={styles.deleteButton}
+            type="button"
+            onClick={handleDelete}
+          >
+            <MdDelete />
+          </button>
+        }
       </div>
     </Link>
   );

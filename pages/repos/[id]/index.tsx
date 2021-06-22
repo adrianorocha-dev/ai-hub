@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/client';
 import { MdFileUpload } from 'react-icons/md';
 import { GoGear } from 'react-icons/go';
 import { BsThreeDotsVertical } from 'react-icons/bs';
@@ -13,16 +14,17 @@ import EditModalModal from '../../../components/EditModelModal';
 import { useFetch } from '../../../hooks/useFetch';
 
 import { Model } from '../../../@types/Model';
+import { Repo } from '../../../@types/Repo';
 
 import styles from '../../../styles/pages/Repo.module.css';
 
-function Repo() {
+function ViewRepo() {
   const [file, setFile] = useState<File>();
   const [editModelId, setEditModelId] = useState<string>();
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  
+  const [session, sessionLoading] = useSession();
   const router = useRouter();
 
   const { data: models, mutate } = useFetch<Model[]>(`/repos/${router.query.id}/models`);
@@ -56,6 +58,10 @@ function Repo() {
     }
   }, [fileInputRef.current]);
 
+  const {data: repo} = useFetch<Repo>(`/repos/${router.query.id}`);
+
+  const userHasPermissionToEdit = !sessionLoading && (session.user.email === repo?.owner?.email || repo?.members.some(member => member.email === session.user.email));
+
   return (
     <div className={styles.container}>
       <Header />
@@ -63,16 +69,16 @@ function Repo() {
       <main className={styles.main}>
         <div className={styles.containerOptions}>
 
-          <Button onClick={handleChooseFiles}>
+          <Button onClick={handleChooseFiles} disabled={!userHasPermissionToEdit}>
             <input ref={fileInputRef} className={styles.invisibleInput} type="file" />
 
             <MdFileUpload />
             <span>Enviar Modelo</span>
           </Button>
 
-          <Link href={`/repos/${router.query.id}/settings`}>
+          <Link href={userHasPermissionToEdit ? `/repos/${router.query.id}/settings` : `/repos/${router.query.id}`}>
             <a>
-              <Button>
+              <Button disabled={!userHasPermissionToEdit}>
                 <GoGear />
               </Button>
             </a>
@@ -130,11 +136,11 @@ function Repo() {
           </table>
       </main>
 
-      <CreateModalModal file={file} setFile={setFile} />
+      <CreateModalModal file={file} setFile={setFile} allowCreate={userHasPermissionToEdit} />
 
-      <EditModalModal modelId={editModelId} onClose={handleCloseEditPanel} />
+      <EditModalModal modelId={editModelId} onClose={handleCloseEditPanel} allowEdit={userHasPermissionToEdit} />
     </div>
   );
 }
 
-export default Repo;
+export default ViewRepo;
