@@ -12,9 +12,9 @@ import styles from '../../../styles/pages/SettingsRepo.module.css';
 import { MdClose } from 'react-icons/md';
 
 enum RepoVisibility {
-  Unselected,
-  Public,
-  Private,
+  Unselected = null,
+  Public = 0,
+  Private = 1,
 }
 
 function RepoSettings() {
@@ -59,6 +59,7 @@ function RepoSettings() {
           name,
           description,
           visibility,
+          userEmail: session.user.email,
           memberEmails: members.map(member => member.email)
         });
   

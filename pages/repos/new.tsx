@@ -9,9 +9,9 @@ import api from '../../services/api';
 import { useRouter } from 'next/router';
 
 enum RepoVisibility {
-  Unselected,
-  Public,
-  Private,
+  Unselected = null,
+  Public = 0,
+  Private = 1,
 }
 
 function NewRepo() {
