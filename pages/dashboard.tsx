@@ -44,7 +44,6 @@ function Dashboard() {
     }
   }
 
-
   return (
     <div className={styles.container}>
       <Header />
@@ -61,6 +60,7 @@ function Dashboard() {
                     description: repo.description,
                   }}
                   owner={repo.owner.name}
+                  allowDelete={repo.owner.email === session.user?.email}
                   onDelete={deleteRepo}
                 />
               </li>
